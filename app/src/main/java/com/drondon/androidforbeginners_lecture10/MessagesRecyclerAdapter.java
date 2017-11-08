@@ -18,6 +18,7 @@ public class MessagesRecyclerAdapter extends RecyclerView.Adapter<MessagesRecycl
 
     private List<Message> messages;
 
+
     public MessagesRecyclerAdapter(List<Message> messages) {
         this.messages = messages;
     }
@@ -51,7 +52,7 @@ public class MessagesRecyclerAdapter extends RecyclerView.Adapter<MessagesRecycl
     }
 
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder {
+    public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public TextView tvText;
         public TextView tvDate;
@@ -60,7 +61,16 @@ public class MessagesRecyclerAdapter extends RecyclerView.Adapter<MessagesRecycl
             super(itemView);
             tvText = itemView.findViewById(R.id.tv_message);
             tvDate = itemView.findViewById(R.id.tv_date);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            //myListener
+            int position = getAdapterPosition();
+            //myListener.onClick(v,position)
         }
     }
+
 
 }

@@ -1,11 +1,9 @@
 package com.drondon.androidforbeginners_lecture10;
 
 import android.os.Bundle;
-
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.text.Editable;
 import android.view.View;
 import android.widget.EditText;
@@ -24,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        RecyclerView recyclerView = findViewById(R.id.recyclerView); //1
+        final RecyclerView recyclerView = findViewById(R.id.recyclerView); //1
 
         LinearLayoutManager manager
                 = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, true);
@@ -45,10 +43,12 @@ public class MainActivity extends AppCompatActivity {
                 Editable editableText = editText.getText();
                 String text = editableText.toString();
                 Message newMessage = new Message(text, new Date());
-                messages.add(0,newMessage);
-                adapter.notifyDataSetChanged();
+                messages.add(0, newMessage);
+                adapter.notifyItemInserted(0);
 
                 editText.setText("");
+
+                recyclerView.scrollToPosition(0);
             }
         });
     }
